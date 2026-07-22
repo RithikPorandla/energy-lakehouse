@@ -30,4 +30,8 @@ models:
           - not_null
           - accepted_values:
               arguments:
-                values: ['SUN', 'WND', 'WAT', 'NG', 'NUC', 'COL']
+                # BIT/SUB/LIG/WC/RC/SGC/ANT are coal codes — this endpoint
+                # (Form 860) uses granular coal codes, not the aggregated
+                # "COL" used by the generation/Form 923 endpoint (see
+                # stg_eia_generation.yml).
+                values: ['SUN', 'WND', 'WAT', 'NG', 'NUC', 'BIT', 'SUB', 'LIG', 'WC', 'RC', 'SGC', 'ANT']

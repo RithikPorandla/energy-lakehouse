@@ -18,13 +18,13 @@ select
     pe.generator_count,
 
     -- Derived metrics
-    case pe.energy_source_code
-        when 'SUN' then 'Solar'
-        when 'WND' then 'Wind'
-        when 'WAT' then 'Hydro'
-        when 'NG' then 'Natural Gas'
-        when 'NUC' then 'Nuclear'
-        when 'COL' then 'Coal'
+    case
+        when pe.energy_source_code = 'SUN' then 'Solar'
+        when pe.energy_source_code = 'WND' then 'Wind'
+        when pe.energy_source_code = 'WAT' then 'Hydro'
+        when pe.energy_source_code = 'NG' then 'Natural Gas'
+        when pe.energy_source_code = 'NUC' then 'Nuclear'
+        when pe.energy_source_code in ('BIT', 'SUB', 'LIG', 'WC', 'RC', 'SGC', 'ANT') then 'Coal'
         else 'Other'
     end as energy_type,
 
@@ -32,6 +32,7 @@ select
     pe.epa_facility_id,
     pe.facility_types,
     pe.nearby_facility_ghg_emissions,
+    pe.match_type,
 
     -- Metadata
     current_timestamp as dbt_updated_at

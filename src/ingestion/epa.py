@@ -98,6 +98,7 @@ def fetch_epa_emissions(years=None) -> pd.DataFrame:
         dim_cols = [
             "facility_id", "facility_name", "city", "state", "state_name",
             "zip", "county", "latitude", "longitude", "naics_code", "facility_types",
+            "frs_id",  # bridges to EPA's official CAMD-EIA-FRS crosswalk (see int_plant_emissions.sql)
         ]
         merged = facts.merge(dim[dim_cols], on="facility_id", how="left")
         print(f"✓ Fetched {len(merged)} facility emissions records for {year}")

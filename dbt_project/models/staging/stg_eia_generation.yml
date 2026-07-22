@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_eia_generation
+    description: "Cleaned EIA-923 annual net generation — one row per plant per fuel type per year"
+    columns:
+      - name: plant_id
+        description: "EIA plant identifier (same ID space as stg_eia_generators.plant_id)"
+        tests:
+          - not_null
+      - name: net_generation_mwh
+        description: "Net electricity generation in megawatt-hours (can be negative for net pumped-storage consumption)"
+        tests:
+          - not_null
+      - name: state_code
+        description: "Two-letter US state code"
+        tests:
+          - not_null
+      - name: energy_source_code
+        description: "Fuel/energy source code (SUN, WND, NG, etc.)"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['SUN', 'WND', 'WAT', 'NG', 'NUC', 'COL']

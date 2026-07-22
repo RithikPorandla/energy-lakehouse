@@ -7,12 +7,14 @@ flags facilities whose actual emissions deviate sharply from what a plant of
 that size would normally produce.
 
 Restricted to Natural Gas: fact_plant_operations' plant-to-facility match is
-an approximate nearest-cell geo join (see int_plant_emissions.sql), which is
-only physically meaningful for combustion facilities — a solar or wind plant
-"matched" to a nearby EPA-reporting facility is coincidental proximity to some
-unrelated emitter, not that plant's own emissions. Gas plants are the fuel
-type EIA and EPA both track at the same physical facility, so the match (and
-therefore the whole prediction task) is actually meaningful there.
+either a real ID join via EPA's official CAMD-EIA-FRS crosswalk
+('crosswalk_exact') or, where that's not available, an approximate
+state + rounded-lat/long match ('geo_approximate') — see
+int_plant_emissions.sql. Either way it's only physically meaningful for
+combustion facilities: a solar or wind plant sharing a plant_id (or grid
+cell) with a gas unit isn't itself the source of that facility's emissions.
+Gas is the fuel type EIA and EPA both track at the same physical facility
+with the best crosswalk coverage, so the prediction task is meaningful there.
 
 Writes: analytics.ml_facility_emissions_anomalies
 """
@@ -31,41 +33,23 @@ NUMERIC_FEATURES = ["total_capacity_mw", "generator_count"]
 CATEGORICAL_FEATURES = ["state_code", "year"]
 TARGET = "nearby_facility_ghg_emissions"
 
-# Only showcase anomalies from low-multiplicity (trustworthy) geo matches —
-# see load_training_data() for why high-multiplicity matches aren't reliable
-# at the individual-plant level even though they're fine to train on.
-HIGH_CONFIDENCE_MAX_MULTIPLICITY = 2
-
 
 def load_training_data(engine) -> pd.DataFrame:
-    # match_multiplicity: how many distinct EIA plants land in the same
-    # state/year matched to this EPA facility via the approximate lat/long
-    # geo join (int_plant_emissions.sql). A match of 1 means this plant is
-    # the only one that landed on that facility — a reasonably trustworthy
-    # 1:1 pairing. Higher multiplicity means several unrelated plants in the
-    # same rounded grid cell all got attributed the same facility's total
-    # site emissions — real for the model to train on (more data, and the
-    # noise mostly averages out), but not something to showcase as if it
-    # were a single plant's confirmed anomaly.
+    # match_type = 'crosswalk_exact' means this plant<->facility pairing
+    # came from EPA's official CAMD-EIA-FRS identifier crosswalk (a real ID
+    # join), not the approximate rounded-lat/long grid-cell fallback — see
+    # int_plant_emissions.sql. Both are fine to train on (more data, and the
+    # geo-approximate noise mostly averages out), but only exact matches are
+    # trustworthy enough to showcase as a single plant's confirmed anomaly.
     query = """
-        with matches as (
-            select
-                f.plant_id, f.state_code, f.year, f.total_capacity_mw,
-                f.generator_count, f.nearby_facility_ghg_emissions, f.epa_facility_id,
-                p.plant_name
-            from marts.fact_plant_operations f
-            join marts.dim_plant p on p.plant_id = f.plant_id
-            where f.energy_type = 'Natural Gas'
-              and f.nearby_facility_ghg_emissions is not null
-        ),
-        multiplicity as (
-            select epa_facility_id, year, count(distinct plant_id) as match_multiplicity
-            from matches
-            group by epa_facility_id, year
-        )
-        select m.*, mp.match_multiplicity
-        from matches m
-        join multiplicity mp using (epa_facility_id, year)
+        select
+            f.plant_id, f.state_code, f.year, f.total_capacity_mw,
+            f.generator_count, f.nearby_facility_ghg_emissions, f.epa_facility_id,
+            f.match_type, p.plant_name
+        from marts.fact_plant_operations f
+        join marts.dim_plant p on p.plant_id = f.plant_id
+        where f.energy_type = 'Natural Gas'
+          and f.nearby_facility_ghg_emissions is not null
     """
     return pd.read_sql(query, engine)
 
@@ -134,13 +118,13 @@ def run_anomaly_detection():
 
     df["model_r2"] = r2
     df["model_mae"] = mae
-    df["high_confidence_match"] = df["match_multiplicity"] <= HIGH_CONFIDENCE_MAX_MULTIPLICITY
+    df["high_confidence_match"] = df["match_type"] == "crosswalk_exact"
 
     confident = df[df["high_confidence_match"]]
-    print(f"\n{len(confident)} / {len(df)} rows are high-confidence (low geo-match multiplicity) —"
-          f" anomaly showcase below is restricted to those")
+    print(f"\n{len(confident)} / {len(df)} rows are high-confidence (real crosswalk ID match, not "
+          f"geo-approximate) — anomaly showcase below is restricted to those")
 
-    cols = ["plant_name", "state_code", "year", "total_capacity_mw", TARGET, "predicted_emissions", "residual_ratio", "match_multiplicity"]
+    cols = ["plant_name", "state_code", "year", "total_capacity_mw", TARGET, "predicted_emissions", "residual_ratio", "match_type"]
     print("\nTop over-emitters (actual >> predicted for their size):")
     print(confident.nlargest(5, "residual_ratio")[cols].to_string(index=False))
     print("\nTop under-emitters (actual << predicted for their size):")

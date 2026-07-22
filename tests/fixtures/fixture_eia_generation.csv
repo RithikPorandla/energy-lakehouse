@@ -1,0 +1,122 @@
+period,plantCode,plantName,fuel2002,fuel2002TypeDescription,fuelType,fuelTypeDescription,state,stateDescription,primeMover,generation,generation-units,_ingested_at,_source
+2019,3,Barry,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,4174904.19,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,3,Barry,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,8295902.81,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,3,Barry,SUB,Subbituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7,Gadsden,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,169977,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,8,Gorgas,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,489541.89,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,10,Greene County,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1767784.89,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,26,E C Gaston,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,2788601.15,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,26,E C Gaston,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,2900181.85,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,46,Browns Ferry,NUC,Nuclear,NUC,Nuclear,AL,Alabama,ALL,29519900,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,47,Colbert,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1670,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,56,Charles R Lowman,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,947434.56,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,533,McWilliams,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,3559636.16,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,6001,Joseph M Farley,NUC,Nuclear,NUC,Nuclear,AL,Alabama,ALL,14136962,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,6002,James H Miller Jr,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,253286.77,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,6002,James H Miller Jr,SUB,Subbituminous Coal,COL,Coal,AL,Alabama,ALL,18237661.23,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7063,McIntosh (AL),NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,661079.39,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7697,Washington County Cogeneration Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,823931,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7698,General Electric Plastic,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,407967,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7710,H Allen Franklin Combined Cycle,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,12462636,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7721,Theodore Cogen Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1551817,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,7897,E B Harris Electric Generating Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,4404405,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,8847,Southern Pines,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,8847,Southern Pines,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,10216,Alabama River Pulp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,24772.7,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,10699,Georgia-Pacific Consr Prods LP-Naheola,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,16844.13,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,10699,Georgia-Pacific Consr Prods LP-Naheola,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,66784.06,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,50359,Sloss Industries Corp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,50407,Mobile Energy Services LLC,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,50407,Mobile Energy Services LLC,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,35796,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,52140,International Paper Prattville Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,52140,International Paper Prattville Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,139794.07,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54096,International Paper Riverdale Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,382971.69,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54216,U S Alliance Coosa Pines,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54216,U S Alliance Coosa Pines,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,42049.96,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54429,Alabama Pine Pulp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,15493.73,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54550,ExxonMobil Mobile Bay Onshore,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,72751,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54730,Yellowhammer Gas Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,16795,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54752,International Paper Pine Hill Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,80.39,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54752,International Paper Pine Hill Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,66573.47,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54763,WestRock Demopolis Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54763,WestRock Demopolis Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,6484.49,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54789,Georgia-Pacific Brewton Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,214203.91,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54802,Mead Coated Board,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,212550.31,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,54985,Crestwood Dothan,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55044,Packaging Corporation of America Jackson Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,40655.36,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55138,Walton Discover Power Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,8937,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55241,Hog Bayou Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1088349,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55271,Tenaska Lindsay Hill Generating Station,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1723985,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55292,Decatur Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,2144807,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55293,Morgan Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,3121340,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55409,Calhoun Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,332467.68,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55411,Hillabee Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,5035173,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,55440,Tenaska Central Alabama Generating Stn,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,4832746,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,56018,AMEA Peaking,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,53719,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,56076,ABC Coke,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,373.89,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,60058,"River Bend Solar, LLC",SUN,Solar,SUN,Solar,AL,Alabama,ALL,149488,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,60583,LaFayette Solar Farm,SUN,Solar,SUN,Solar,AL,Alabama,ALL,167107,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,60679,Fort Rucker Solar Array,SUN,Solar,SUN,Solar,AL,Alabama,ALL,14223,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,60680,ANAD Solar Array,SUN,Solar,SUN,Solar,AL,Alabama,ALL,8870,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,61901,Redstone Arsenal Hybrid,SUN,Solar,SUN,Solar,AL,Alabama,ALL,18167,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,61924,"Cumblerland Land Holdings, LLC",SUN,Solar,SUN,Solar,AL,Alabama,ALL,27084,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2019,62449,Kimberly Clark Mobile - CHP Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,257522,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,3,Barry,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,2625834.53,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,3,Barry,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,7873311.47,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,3,Barry,SUB,Subbituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7,Gadsden,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,50435,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,10,Greene County,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1071007.32,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,26,E C Gaston,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,2384708.47,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,26,E C Gaston,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1412104.53,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,46,Browns Ferry,NUC,Nuclear,NUC,Nuclear,AL,Alabama,ALL,28774850,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,47,Colbert,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,2818.23,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,56,Lowman Energy Center,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,314886.57,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,533,McWilliams,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,4158113,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,6001,Joseph M Farley,NUC,Nuclear,NUC,Nuclear,AL,Alabama,ALL,14775797,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,6002,James H Miller Jr,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,216774.49,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,6002,James H Miller Jr,SUB,Subbituminous Coal,COL,Coal,AL,Alabama,ALL,16228029.51,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7063,McIntosh (AL),NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,369933.83,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7697,Washington County Cogeneration Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,710373,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7698,General Electric Plastic,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,612925,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7710,H Allen Franklin Combined Cycle,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,12637167,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7721,Theodore Cogen Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1613650,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,7897,E B Harris Electric Generating Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,4418244,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,8847,Southern Pines,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,8847,Southern Pines,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,10216,Alabama River Pulp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,33722.39,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,10699,Georgia-Pacific Consr Prods LP-Naheola,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,10699,Georgia-Pacific Consr Prods LP-Naheola,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,50485.86,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,50359,Sloss Industries Corp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,52140,International Paper Prattville Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,52140,International Paper Prattville Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,152199.97,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54096,International Paper Riverdale Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,277470.25,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54216,U S Alliance Coosa Pines,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54216,U S Alliance Coosa Pines,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,45650.86,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54429,Alabama Pine Pulp,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,7519.52,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54550,W&T Onshore Treating Facility (OTF),NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,63167,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54730,Yellowhammer Gas Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,17179,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54752,International Paper Pine Hill Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,2.18,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54752,International Paper Pine Hill Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,64918.82,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54763,WestRock Demopolis Mill,BIT,Bituminous Coal,COL,Coal,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54763,WestRock Demopolis Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,6428.96,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54789,Georgia-Pacific Brewton Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,211370.14,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54802,Mead Coated Board,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,212020.13,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,54985,Crestwood Dothan,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,0,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55044,Packaging Corporation of America Jackson Mill,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,20812.82,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55138,Walton Discover Power Facility,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,80,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55241,Hog Bayou Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1696319,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55271,Tenaska Lindsay Hill Generating Station,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1825393,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55292,Decatur Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,1482286,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55293,Morgan Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,2848326,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55409,Calhoun Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,37512.82,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55411,Hillabee Energy Center,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,5074658,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,55440,Central Alabama Generating Station,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,5052482,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,56018,AMEA Peaking,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,41925,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,56076,ABC Coke,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,109.56,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,60058,"River Bend Solar, LLC",SUN,Solar,SUN,Solar,AL,Alabama,ALL,130714,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,60583,LaFayette Solar Farm,SUN,Solar,SUN,Solar,AL,Alabama,ALL,147721,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,60679,Fort Rucker Solar Array,SUN,Solar,SUN,Solar,AL,Alabama,ALL,15017,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,60680,ANAD Solar Array,SUN,Solar,SUN,Solar,AL,Alabama,ALL,11845,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,61901,Redstone Arsenal Hybrid,SUN,Solar,SUN,Solar,AL,Alabama,ALL,17280,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,61924,"Cumblerland Land Holdings, LLC",SUN,Solar,SUN,Solar,AL,Alabama,ALL,29251,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel
+2020,62449,Kimberly Clark Mobile - CHP Plant,NG,Natural Gas,NG,Natural Gas,AL,Alabama,ALL,348413,megawatthours,2026-07-22 09:38:47.125728,eia_923_facility_fuel

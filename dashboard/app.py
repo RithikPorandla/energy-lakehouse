@@ -112,9 +112,13 @@ def load_fuel_mix():
     engine = get_engine()
     query = """
         select
-            case energy_source_code
-                when 'SUN' then 'Solar' when 'WND' then 'Wind' when 'WAT' then 'Hydro'
-                when 'NG' then 'Natural Gas' when 'NUC' then 'Nuclear' when 'COL' then 'Coal'
+            case
+                when energy_source_code = 'SUN' then 'Solar'
+                when energy_source_code = 'WND' then 'Wind'
+                when energy_source_code = 'WAT' then 'Hydro'
+                when energy_source_code = 'NG' then 'Natural Gas'
+                when energy_source_code = 'NUC' then 'Nuclear'
+                when energy_source_code in ('BIT','SUB','LIG','WC','RC','SGC','ANT') then 'Coal'
                 else 'Other'
             end as fuel,
             period_year as year,
@@ -336,6 +340,12 @@ with st.sidebar:
   filtered to power-sector direct emitters only (was inflating totals ~4-5x)
 - A broken IPv6 path was silently hanging NOAA ingestion
 - dbt's default schema naming needed a `generate_schema_name` override
+- EIA's generator-capacity endpoint uses granular coal codes (BIT/SUB/LIG/...),
+  not the aggregated `COL` code — coal was silently missing from the fossil
+  denominator until caught (clean share corrected from ~44% to ~37%)
+- Facility matching now prefers EPA's official CAMD-EIA-FRS ID crosswalk over
+  the old lat/long grid-cell approximation, with the approximate join as a
+  fallback only where the crosswalk doesn't cover a facility
         """)
 
 if not selected_states:
@@ -447,6 +457,28 @@ with tab_trends:
     fig3 = style_fig(fig3, height=440)
     st.plotly_chart(fig3, use_container_width=True, theme=None)
 
+    st.markdown("#### Is Divergence Explained by Underused Capacity?")
+    cf_df = df.dropna(subset=["clean_capacity_factor"]).copy()
+    cf_df["group"] = cf_df["capacity_emissions_divergence_flag"].map(
+        {True: "Divergent state-years", False: "Non-divergent state-years"}
+    )
+    fig_cf = px.box(
+        cf_df, x="group", y="clean_capacity_factor", color="group",
+        color_discrete_sequence=[BAD, CATEGORICAL[1]], points="all",
+    )
+    fig_cf.update_yaxes(tickformat=".0%", title="Clean capacity factor (actual output ÷ theoretical max)")
+    fig_cf.update_xaxes(title="")
+    fig_cf.update_layout(showlegend=False)
+    fig_cf = style_fig(fig_cf, height=420)
+    st.plotly_chart(fig_cf, use_container_width=True, theme=None)
+    means = cf_df.groupby("group")["clean_capacity_factor"].mean()
+    st.caption(
+        f"Real EIA-923 generation data, not just installed capacity. Divergent state-years average "
+        f"{means.get('Divergent state-years', 0):.1%} clean capacity factor vs. "
+        f"{means.get('Non-divergent state-years', 0):.1%} for non-divergent ones — directional evidence "
+        f"that some of the 'divergence' is capacity that's built but not yet running at full output."
+    )
+
 with tab_ml:
     archetypes_df = load_archetypes()
     importance_df = load_feature_importance()
@@ -498,7 +530,7 @@ with tab_ml:
     st.markdown("#### Facility Emissions Model")
     st.caption(
         "Random Forest predicting a natural-gas plant's facility GHG emissions from its own "
-        "capacity, generator count, state, and year — trained on ~12,000 matched plant-facility "
+        "capacity, generator count, state, and year — trained on ~8,500 matched plant-facility "
         "pairs. Residuals (actual minus predicted) flag facilities emitting far more or less "
         "than their size would suggest."
     )
@@ -539,11 +571,13 @@ with tab_ml:
 
     st.markdown("##### Facility-level outliers")
     st.info(
-        "⚠️ The plant-to-facility match is an approximate geographic join (see README), so even "
-        "the confident matches below can occasionally attribute a multi-unit site's full emissions "
-        "to one fuel-type subset of its generators. Treat these as **leads worth checking**, not "
+        "High-confidence matches use EPA's official CAMD-EIA-FRS identifier crosswalk (a real "
+        "plant-to-facility ID join, not a proximity guess — see README). The remaining risk: a "
+        "handful of sites host more than one fuel type under the same EIA plant ID, so a real "
+        "gas unit's crosswalk match can occasionally include a co-located facility's full site "
+        "emissions rather than just its own. Treat these as **leads worth checking**, not "
         "confirmed findings.",
-        icon="⚠️",
+        icon="✅",
     )
     confident_df = anomalies_df[anomalies_df["high_confidence_match"]].copy()
     outlier_cols = ["plant_name", "state_code", "year", "total_capacity_mw", "nearby_facility_ghg_emissions", "predicted_emissions", "residual_ratio"]

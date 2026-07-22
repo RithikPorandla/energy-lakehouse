@@ -38,8 +38,21 @@ jobs:
         run: |
           PGPASSWORD=lakehouse123 psql -h localhost -U lakehouse -d energy_lakehouse -f docker/init.sql
 
+      - name: Load fixture data
+        # Stands in for the ingestion scripts (src/ingestion/*.py), which hit
+        # live third-party APIs — not something CI should depend on for a
+        # fast, deterministic run. tests/fixtures/*.csv is a small real slice
+        # (Alabama, 2019-2020) exported from the live pipeline.
+        run: |
+          PGPASSWORD=lakehouse123 psql -h localhost -U lakehouse -d energy_lakehouse -f tests/fixtures/load_fixtures.sql
+
       - name: dbt deps
         run: cd dbt_project && dbt deps
+
+      - name: dbt seed
+        run: cd dbt_project && dbt seed
+        env:
+          POSTGRES_HOST: localhost
 
       - name: dbt run
         run: cd dbt_project && dbt run

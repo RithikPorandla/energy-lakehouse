@@ -19,6 +19,7 @@ renamed as (
         "naics_code"::varchar                             as naics_code,
         "facility_types"::varchar                         as facility_types,
         "total_co2e_emissions_metric_tons"::float          as total_co2e_emissions_metric_tons,
+        "frs_id"::varchar                                  as frs_id,
 
         -- Metadata
         "_ingested_at"::timestamp                          as ingested_at,
