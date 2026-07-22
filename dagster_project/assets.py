@@ -42,12 +42,37 @@ def raw_noaa_weather(context: AssetExecutionContext):
 
 
 @asset(
+    group_name="ingestion",
+    description="Ingest EIA-923 actual net generation data (2019-2023)",
+)
+def raw_eia_generation(context: AssetExecutionContext):
+    """Pull actual annual net generation (not nameplate capacity) from EIA into raw schema."""
+    from src.ingestion.eia_generation import ingest_eia_generation
+    df = ingest_eia_generation()
+    return MaterializeResult(
+        metadata={
+            "row_count": MetadataValue.int(len(df)),
+        }
+    )
+
+
+@asset(
     group_name="transform",
-    deps=[raw_eia_generators, raw_epa_emissions, raw_noaa_weather],
+    deps=[raw_eia_generators, raw_epa_emissions, raw_noaa_weather, raw_eia_generation],
     description="Run dbt transformations: staging → intermediate → marts",
 )
 def dbt_transforms(context: AssetExecutionContext):
     """Run dbt to transform raw data through medallion layers."""
+    seed_result = subprocess.run(
+        ["dbt", "seed", "--project-dir", "dbt_project", "--profiles-dir", "dbt_project"],
+        capture_output=True,
+        text=True,
+    )
+    context.log.info(seed_result.stdout)
+    if seed_result.returncode != 0:
+        context.log.error(seed_result.stderr)
+        raise Exception(f"dbt seed failed: {seed_result.stderr}")
+
     result = subprocess.run(
         ["dbt", "run", "--project-dir", "dbt_project", "--profiles-dir", "dbt_project"],
         capture_output=True,

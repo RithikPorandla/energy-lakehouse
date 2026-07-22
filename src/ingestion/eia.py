@@ -19,10 +19,17 @@ load_dotenv()
 EIA_BASE_URL = "https://api.eia.gov/v2"
 API_KEY = os.getenv("EIA_API_KEY")
 
-# SUN/WND/WAT/NUC = clean per dim_plant.is_clean_energy; NG/COL = fossil.
-# COL is included (beyond the original guide's fuel list) so clean-capacity
-# share isn't computed against an incomplete fossil denominator.
-ENERGY_SOURCE_CODES = ["SUN", "WND", "WAT", "NG", "NUC", "COL"]
+# SUN/WND/WAT/NUC = clean per dim_plant.is_clean_energy; NG + coal = fossil.
+# This endpoint (operating-generator-capacity, Form 860) uses granular coal
+# codes (BIT/SUB/LIG/WC/RC/SGC/ANT), NOT the aggregated "COL" fuelType used
+# by the facility-fuel/EIA-923 generation endpoint (see eia_generation.py) —
+# using "COL" here silently matches zero rows instead of erroring, which is
+# how this went unnoticed: coal capacity was missing from the fossil
+# denominator entirely until this was caught.
+ENERGY_SOURCE_CODES = [
+    "SUN", "WND", "WAT", "NG", "NUC",
+    "BIT", "SUB", "LIG", "WC", "RC", "SGC", "ANT",
+]
 PAGE_SIZE = 5000
 
 

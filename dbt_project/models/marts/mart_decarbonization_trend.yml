@@ -20,5 +20,11 @@ models:
         description: "Total reported GHGRP facility emissions for the state/year, in metric tons CO2e"
         tests:
           - not_null
+      - name: total_generation_mwh
+        description: "Actual net electricity generation (EIA-923), in megawatt-hours"
+      - name: capacity_factor
+        description: "total_generation_mwh / (total_capacity_mw x hours_in_year) — how much of theoretical max output actually ran"
+      - name: clean_capacity_factor
+        description: "Same as capacity_factor, restricted to clean (solar/wind/hydro/nuclear) capacity and generation"
       - name: capacity_emissions_divergence_flag
         description: "True when clean capacity grew >3% YoY but emissions didn't fall by at least 1%"

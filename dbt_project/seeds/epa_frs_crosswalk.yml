@@ -1,0 +1,17 @@
+version: 2
+
+seeds:
+  - name: epa_frs_crosswalk
+    description: >
+      EPA's official CAMD-EIA Power Sector Data Crosswalk (FRS bridge table),
+      pulled from github.com/USEPA/camd-eia-crosswalk (data/FRS_ids.csv).
+      Links CAMD_PLANT_ID (== EIA plant_id for the large majority of plants —
+      both are ORISPL numbering) to FRS_ID, the EPA Facility Registry Service
+      ID that GHGRP facilities also carry (stg_epa_emissions.frs_id). This is
+      what makes int_plant_emissions.sql's "exact" match tier a real
+      identifier join instead of a lat/long proximity guess.
+    columns:
+      - name: CAMD_PLANT_ID
+        description: "EPA CAMD/Acid Rain Program plant ID — same ID space as EIA plant_id for unrenamed plants"
+      - name: FRS_ID
+        description: "EPA Facility Registry Service ID — shared key with stg_epa_emissions.frs_id"
