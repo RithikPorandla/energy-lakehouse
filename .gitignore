@@ -9,6 +9,6 @@ dbt_project/logs/
 dbt_project/.user.yml
 .dagster/
 .dagster_home/
-.streamlit/
+.streamlit/secrets.toml
 *.egg-info/
 .DS_Store

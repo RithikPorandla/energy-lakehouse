@@ -1,0 +1,10 @@
+# Streamlit Community Cloud auto-detects this file since it sits next to
+# app.py. Deliberately scoped to just what the dashboard needs — the repo
+# root requirements.txt (dagster, dbt, scikit-learn, ...) is for running the
+# ingestion/dbt/ML pipeline locally, none of which the deployed app does.
+streamlit==1.60.0
+plotly==6.9.0
+pandas==3.0.3
+SQLAlchemy==2.0.51
+psycopg2-binary==2.9.12
+python-dotenv==1.2.2

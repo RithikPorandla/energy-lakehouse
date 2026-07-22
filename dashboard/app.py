@@ -74,6 +74,21 @@ def style_fig(fig, height=440):
 # Data
 # ---------------------------------------------------------------------------
 def get_engine():
+    """
+    Local dev reads Postgres creds from .env (POSTGRES_*). Deployed on
+    Streamlit Community Cloud, there's no .env — instead paste a single
+    DATABASE_URL into the app's Secrets (Settings > Secrets), e.g. the
+    connection string Neon/Supabase gives you (already includes
+    sslmode=require). DATABASE_URL wins if both are present.
+    """
+    try:
+        database_url = st.secrets.get("DATABASE_URL")
+    except Exception:
+        database_url = None  # no secrets.toml locally — that's expected in dev
+    database_url = database_url or os.getenv("DATABASE_URL")
+    if database_url:
+        return create_engine(database_url)
+
     url = (
         f"postgresql://{os.getenv('POSTGRES_USER', 'lakehouse')}:"
         f"{os.getenv('POSTGRES_PASSWORD', 'lakehouse123')}"
