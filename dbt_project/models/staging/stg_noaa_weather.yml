@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_noaa_weather
+    description: "Cleaned NOAA daily weather summaries — one row per station per day"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: observation_date
+        tests:
+          - not_null

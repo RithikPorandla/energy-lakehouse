@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: mart_decarbonization_trend
+    description: >
+      Headline insight mart. One row per state per year: clean-energy capacity
+      share (EIA) alongside real facility GHG emissions totals (EPA), with
+      year-over-year deltas and a flag for years where clean capacity grew
+      meaningfully without a matching emissions decline.
+    columns:
+      - name: state_code
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+      - name: clean_capacity_share
+        description: "Share of total nameplate capacity that is solar/wind/hydro/nuclear"
+      - name: total_ghg_emissions_metric_tons
+        description: "Total reported GHGRP facility emissions for the state/year, in metric tons CO2e"
+        tests:
+          - not_null
+      - name: capacity_emissions_divergence_flag
+        description: "True when clean capacity grew >3% YoY but emissions didn't fall by at least 1%"

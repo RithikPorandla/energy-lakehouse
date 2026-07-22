@@ -1,0 +1,52 @@
+name: dbt Test
+
+on:
+  pull_request:
+    paths:
+      - 'dbt_project/**'
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: lakehouse
+          POSTGRES_PASSWORD: lakehouse123
+          POSTGRES_DB: energy_lakehouse
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install dbt-postgres==1.11.0
+
+      - name: Init database schemas
+        run: |
+          PGPASSWORD=lakehouse123 psql -h localhost -U lakehouse -d energy_lakehouse -f docker/init.sql
+
+      - name: dbt deps
+        run: cd dbt_project && dbt deps
+
+      - name: dbt run
+        run: cd dbt_project && dbt run
+        env:
+          POSTGRES_HOST: localhost
+
+      - name: dbt test
+        run: cd dbt_project && dbt test
+        env:
+          POSTGRES_HOST: localhost

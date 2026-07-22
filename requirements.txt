@@ -1,0 +1,25 @@
+# Data Engineering
+pandas==3.0.3
+requests==2.34.2
+SQLAlchemy==2.0.51
+psycopg2-binary==2.9.12
+python-dotenv==1.2.2
+
+# dbt
+dbt-postgres==1.11.0
+
+# Dagster
+dagster==1.13.14
+dagster-webserver==1.13.14
+dagster-postgres==0.29.14
+dagster-dbt==0.29.14
+
+# Data Quality
+great-expectations==1.19.0
+
+# Dashboard
+streamlit==1.60.0
+plotly==6.9.0
+
+# Machine Learning
+scikit-learn==1.9.0

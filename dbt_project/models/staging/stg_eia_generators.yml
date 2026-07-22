@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_eia_generators
+    description: "Cleaned EIA 860M generator data — one row per generator per December snapshot year"
+    columns:
+      - name: plant_id
+        description: "EIA plant identifier"
+        tests:
+          - not_null
+      - name: generator_id
+        description: "Generator identifier within plant"
+        tests:
+          - not_null
+      - name: nameplate_capacity_mw
+        description: "Generator nameplate capacity in megawatts"
+        tests:
+          - not_null
+      - name: state_code
+        description: "Two-letter US state code"
+        tests:
+          - not_null
+      - name: period_year
+        description: "Calendar year of the December snapshot"
+        tests:
+          - not_null
+      - name: energy_source_code
+        description: "Fuel/energy source code (SUN, WND, NG, etc.)"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['SUN', 'WND', 'WAT', 'NG', 'NUC', 'COL']

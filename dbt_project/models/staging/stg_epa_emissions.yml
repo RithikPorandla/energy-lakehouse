@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_epa_emissions
+    description: "Cleaned EPA GHGRP facility-level annual GHG emissions — one row per facility per reporting year"
+    columns:
+      - name: facility_id
+        description: "EPA GHGRP facility identifier"
+        tests:
+          - not_null
+      - name: reporting_year
+        description: "GHGRP reporting year"
+        tests:
+          - not_null
+      - name: total_co2e_emissions_metric_tons
+        description: "Total reported GHG emissions for the facility/year, in metric tons CO2e"
+        tests:
+          - not_null
+      - name: state_code
+        description: "Two-letter US state code"
