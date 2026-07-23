@@ -1,8 +1,31 @@
-# Energy Data Lakehouse — State Decarbonization Tracker
+<div align="center">
+
+# ⚡ Energy Data Lakehouse — State Decarbonization Tracker
+
+### Is clean-energy capacity growth actually translating into falling measured emissions?
+
+[![Live Dashboard](https://img.shields.io/badge/Live%20Dashboard-View%20App-FF4B4B?logo=streamlit&logoColor=white)](https://energy-lakehouse-oh6cqynxe7snjlakjrtnzu.streamlit.app)
+[![dbt Test](https://github.com/RithikPorandla/energy-lakehouse/actions/workflows/dbt_test.yml/badge.svg)](https://github.com/RithikPorandla/energy-lakehouse/actions/workflows/dbt_test.yml)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![dbt](https://img.shields.io/badge/dbt-1.11-FF694B?logo=dbt&logoColor=white)
+![Dagster](https://img.shields.io/badge/Dagster-orchestration-6E4AFF?logo=dagster&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Postgres-2496ED?logo=docker&logoColor=white)
+
+</div>
 
 A data lakehouse that ingests US energy data from three public APIs (EIA, EPA, NOAA), transforms it through a dbt medallion architecture, orchestrates the pipeline with Dagster, and surfaces a real finding through an interactive dashboard: **is clean-energy capacity growth actually translating into falling measured emissions, state by state?**
 
-## The finding
+<p align="center">
+  <img src="docs/images/overview.png" width="100%" alt="Dashboard overview — KPI tiles, national capacity mix, and emissions-vs-capacity index">
+</p>
+
+## Contents
+
+[The finding](#the-finding) · [Dashboard](#dashboard) · [Machine learning](#machine-learning) · [Architecture](#architecture) · [Data sources](#data-sources) · [Star schema](#star-schema) · [Quick start](#quick-start) · [Tech stack](#tech-stack) · [What this demonstrates](#what-this-demonstrates)
+
+## 🔎 The finding
 
 Nationally, the picture looks reasonable: from 2019 to 2023, total US power-sector clean generation capacity (solar/wind/hydro/nuclear) grew **30.5% → 36.7%** of total capacity (+28% in absolute MW), while total power-sector GHG emissions reported to EPA's GHGRP fell **~12%** (1.66B → 1.47B metric tons CO2e). (Coal capacity is counted in that denominator — see "Data quirks" below for a bug that briefly excluded it.)
 
@@ -12,7 +35,7 @@ But that aggregate hides a wide split at the state level. **Texas** grew clean c
 
 Explore it yourself in the dashboard (`streamlit run dashboard/app.py`) or query `marts.mart_decarbonization_trend` directly.
 
-## Dashboard
+## 📊 Dashboard
 
 Five tabs, backed live by the warehouse (`dashboard/app.py`), styled with a validated colorblind-safe dark palette (`scripts/validate_palette.js` — see `dataviz` methodology):
 
@@ -22,7 +45,12 @@ Five tabs, backed live by the warehouse (`dashboard/app.py`), styled with a vali
 - **ML Insights** — the two models below: archetype clusters and the facility emissions model
 - **Data Explorer** — the full `mart_decarbonization_trend` table with CSV export
 
-## Machine learning
+<p align="center">
+  <img src="docs/images/state_map.png" width="49%" alt="US choropleth of the decarbonization gap by state">
+  <img src="docs/images/state_comparison.png" width="49%" alt="Clean capacity share trend lines for selected states">
+</p>
+
+## 🤖 Machine learning
 
 Two models, both written by `ml/` scripts as Dagster assets (`ml_state_archetypes`, `ml_facility_emissions_anomalies`) into a new `analytics` schema. Chosen deliberately for what the data can actually support — we have 51 states of panel data (too few rows for a supervised model to generalize) and ~50,000 plant-year records (plenty for a real regression):
 
@@ -33,11 +61,15 @@ Two models, both written by `ml/` scripts as Dagster assets (`ml_state_archetype
 
 Silhouette scores are recomputed each run against whatever's in `mart_decarbonization_trend`, so this split (and the cluster count itself) will legitimately shift as more years of data land — that's a feature of using a real statistical criterion instead of hardcoding "4 archetypes."
 
+<p align="center">
+  <img src="docs/images/ml_insights.png" width="100%" alt="ML Insights tab — archetype scatter plot and states-by-archetype breakdown">
+</p>
+
 **Facility Emissions Model** (Random Forest, `ml/anomaly_detection.py`) — predicts a natural-gas plant's own GHG emissions from its capacity, generator count, state, and year, trained on ~8,500 matched plant-facility pairs, held-out R² ≈ 0.48 (MAE ≈ 419K tons). Restricted to natural gas only: even with a real ID-based facility match (below), a solar or wind plant sharing an EIA plant ID with a gas unit isn't itself the source of that facility's emissions — gas is the fuel type where the match is physically meaningful. Capacity dominates feature importance (~70%, physically expected — bigger plants emit more), with state/generator-count/year explaining the rest. Residuals (out-of-fold, 5-fold CV, not in-sample) flag facilities that emit far more or less than their size predicts.
 
 **The match quality matters, and it improved mid-project**: `fact_plant_operations`'s plant-to-facility join now prefers EPA's official CAMD-EIA-FRS identifier crosswalk (`dbt_project/seeds/epa_frs_crosswalk.csv`) — a real ID join, not a proximity guess — falling back to the old approximate lat/long grid-cell match only for facilities the crosswalk doesn't cover (renewables aren't CAMD-regulated, so they always fall back). `match_type = 'crosswalk_exact'` replaces the old match-multiplicity heuristic as the "is this confident enough to showcase as a single plant's anomaly" signal — ~3,100 of the ~8,500 training rows are exact matches. Even so, a small residual risk remains: a handful of sites host more than one fuel type under the same EIA plant ID, so a real gas unit's crosswalk match can occasionally include a co-located facility's full site emissions rather than just its own. The dashboard surfaces the outlier list with that caveat front and center; treat it as leads worth checking, not confirmed findings. The R² and feature-importance results are robust regardless (they're aggregate statistics, not dependent on any single match being clean).
 
-## Architecture
+## 🏗️ Architecture
 
 ```
 [EIA 860M API]      ──┐  (nameplate capacity, 2019-2023 Dec snapshots)
@@ -70,7 +102,7 @@ Silhouette scores are recomputed each run against whatever's in `mart_decarboniz
                                     Streamlit + Plotly dashboard
 ```
 
-## Data sources
+## 🗂️ Data sources
 
 | Source | Data | Years | API key |
 |---|---|---|---|
@@ -87,13 +119,13 @@ Things about these sources that aren't obvious from the original tutorial this p
 - **EIA's two endpoints use two different coal taxonomies.** The generator-capacity endpoint (Form 860) uses granular coal codes (`BIT`/`SUB`/`LIG`/`WC`/`RC`/`SGC`/`ANT`); the generation endpoint (Form 923, `facility-fuel` route) uses the aggregated `COL` code. Filtering the 860 endpoint on `COL` silently returns zero rows instead of erroring — that's how ~210 GW of national coal capacity went missing from the fossil denominator for a while (see [src/ingestion/eia.py](src/ingestion/eia.py)).
 - **EPA's GHGRP facility ID isn't an EIA plant ID.** There's no shared key between the two systems directly. EPA does publish an official bridge — the CAMD-EIA-FRS crosswalk (`github.com/USEPA/camd-eia-crosswalk`) — which links GHGRP's `frs_id` to `CAMD_PLANT_ID` (the same ORISPL numbering as EIA `plant_id` for the large majority of plants). `int_plant_emissions.sql` uses this as a real ID join (`match_type = 'crosswalk_exact'`), falling back to an approximate state + rounded-lat/long match only for facilities the crosswalk doesn't cover.
 
-## Star schema
+## ⭐ Star schema
 
 - `mart_decarbonization_trend` — **the headline mart.** State × year: clean capacity share, real GHG totals, real generation and capacity factor (EIA-923), YoY deltas, divergence flag.
 - `fact_plant_operations` — plant-level operational detail (capacity, nearby facility emissions and `match_type` where matched — crosswalk-exact or geo-approximate)
 - `dim_plant`, `dim_location`, `dim_time` — supporting dimensions (one row per key — see "Data quirks" for a dimension-grain bug that was fixed)
 
-## Quick start
+## 🚀 Quick start
 
 ```bash
 # 1. Start Postgres
@@ -125,11 +157,11 @@ dagster dev -m dagster_project.definitions
 streamlit run dashboard/app.py
 ```
 
-## Tech stack
+## 🧰 Tech stack
 
 Python, dbt, Dagster, PostgreSQL, Docker, scikit-learn, Streamlit/Plotly, GitHub Actions
 
-## What this demonstrates
+## ✅ What this demonstrates
 
 1. **dbt** — staging → intermediate → marts, schema tests, docs, packages (`dbt_utils`), seeds (official EPA-EIA crosswalk)
 2. **Dagster** — software-defined assets with real dependencies (ingestion → transform → test → ML), schedules, sensors
